@@ -1,10 +1,12 @@
-import Head from 'next/head';
-
+import Header from '@/components/Header';
 export default function Home() {
   return (
     <>
-      <div class="flex items-center justify-center py-4 flex-col">
-        <h1 class="text-5xl font-bold text-blue-500">Welcome to Growth Log!</h1>
+      <Header />
+      <div className="flex justify-center items-center flex-col w-full min-content-height px-16">
+        <span className="max-w-md w-full text-center">
+          Daily Planning and Journalling made simple.
+        </span>
       </div>
     </>
   );

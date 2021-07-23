@@ -8,4 +8,8 @@
     min-height: 100vh;
     scroll-behavior: smooth;
   }
+
+  .min-content-height {
+    min-height: calc(100vh - 5rem);
+  }
 }
