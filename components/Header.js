@@ -21,7 +21,7 @@ export const NavButton = ({ linkTo, title, primary, ...props }) => {
 };
 
 export default function Header() {
-  const { signInWithGoogle } = useAuth();
+  const { signOut, signInWithGoogle } = useAuth();
 
   return (
     <nav className="flex items-center justify-between w-full px-16 h-20 bg-white sticky top-0">
@@ -37,6 +37,7 @@ export default function Header() {
         primary
         onClick={signInWithGoogle}
       />
+      <NavButton linkTo="#" title="Sign Out" primary onClick={signOut} />
     </nav>
   );
 }
