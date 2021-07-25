@@ -1,5 +1,9 @@
 import Header from '@/components/Header';
+import { useAuth } from '@/lib/auth';
+
 export default function Home() {
+  const { user } = useAuth();
+
   return (
     <>
       <Header />
@@ -7,6 +11,7 @@ export default function Home() {
         <span className="max-w-md w-full text-center">
           Daily Planning and Journalling made simple.
         </span>
+        <span>{user?.email}</span>
       </div>
     </>
   );
