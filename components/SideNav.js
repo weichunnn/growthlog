@@ -6,12 +6,12 @@ import {
   FaCog,
   FaSignOutAlt
 } from 'react-icons/fa';
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
+import { useAuth } from '@/lib/auth';
 
 import Logo from './Logo';
 
-export const SideNavButton = ({ linkTo, title }) => {
+export const SideNavButton = ({ title, onClick }) => {
   const router = useRouter();
 
   const iconSwitch = () => {
@@ -30,24 +30,24 @@ export const SideNavButton = ({ linkTo, title }) => {
         return <FaSignOutAlt className="mr-4 text-xl" />;
     }
   };
-
   return (
-    <NextLink href={linkTo}>
-      <button
-        className={`flex items-center w-full py-2 px-4 rounded-md transistion duration-200 ease-in-out  ${
-          router.route == linkTo
-            ? 'text-white bg-blue-600 hover:bg-blue-700'
-            : 'hover:bg-gray-200'
-        }`}
-      >
-        {iconSwitch()}
-        <span>{title}</span>
-      </button>
-    </NextLink>
+    <button
+      className={`flex items-center w-full py-2 px-4 rounded-md transistion duration-200 ease-in-out  ${
+        router.route.slice(1) == title.toLowerCase()
+          ? 'text-white bg-blue-600 hover:bg-blue-700'
+          : 'hover:bg-gray-200'
+      }`}
+      onClick={onClick}
+    >
+      {iconSwitch()}
+      <span>{title}</span>
+    </button>
   );
 };
 
 export default function SideNav() {
+  const { signOut } = useAuth();
+
   return (
     <div className="h-full flex flex-col">
       <Logo additionalClasses="mb-12" />
@@ -59,14 +59,30 @@ export default function SideNav() {
           </div>
           <div className="space-y-4">
             <h1 className="text-xs px-4 uppercase">Content</h1>
-            <SideNavButton title="Journal" linkTo="/journal" />
-            <SideNavButton title="Planner" linkTo="/planner" />
-            <SideNavButton title="Notes" linkTo="/notes" />
+            <SideNavButton
+              title="Journal"
+              onClick={() => router.push('/journal')}
+            />
+            <SideNavButton
+              title="Planner"
+              onClick={() => router.push('/planner')}
+            />
+            <SideNavButton
+              title="Notes"
+              onClick={() => router.push('/notes')}
+            />
           </div>
         </nav>
         <nav className="space-y-4">
-          <SideNavButton title="Settings" linkTo="/settings" />
-          <SideNavButton title="Logout" linkTo="/logout" />
+          <SideNavButton
+            title="Settings"
+            onClick={() => router.push('/settings')}
+          />
+          <SideNavButton
+            title="Logout"
+            linkTo="/logout"
+            onClick={() => signOut()}
+          />
         </nav>
       </div>
     </div>

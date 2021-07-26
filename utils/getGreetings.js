@@ -14,7 +14,7 @@ export default function getGreetings() {
   var currentHour = new Date().getHours();
   for (var i = 0; i < greetings.length; i++) {
     if (currentHour >= greetings[i][0]) {
-      return greetings[i][1] + ' ' + user?.email;
+      return greetings[i][1] + ' ' + user?.user_metadata?.full_name;
     }
   }
 }
