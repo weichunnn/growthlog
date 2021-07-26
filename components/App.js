@@ -28,11 +28,11 @@ const App = ({ children }) => {
     );
   } else {
     return (
-      <div className="w-screen min-h-screen bg-white flex">
-        <div className="w-64 border-r-2 border-gray-200 px-6 py-8">
+      <div className="max-w-screen min-h-screen flex bg-white ">
+        <div className="w-64 border-r border-gray-200 px-6 py-8 fixed inset-y-0 left-0">
           <SideNav />
         </div>
-        <div className="px-8 py-4 flex-grow">{children}</div>
+        <div className="ml-64 flex-grow p-8">{children}</div>
       </div>
     );
   }
