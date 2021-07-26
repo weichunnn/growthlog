@@ -1,7 +1,5 @@
-import PrivateRouteWrapper from '@/components/PrivateRouteWrapper';
+import App from '@/components/App';
 
-const Dashboard = () => {
-  return <div></div>;
-};
-
-export default PrivateRouteWrapper(Dashboard);
+export default function Dashboard() {
+  return <App>Content for Dashboard</App>;
+}

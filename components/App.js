@@ -3,19 +3,20 @@ import { useEffect, useState } from 'react';
 
 import { useAuth } from '@/lib/auth';
 import LoadingState from './LoadingState';
+import SideNav from './SideNav';
 
-const PrivateRouteWrapper = (Component) => (props) => {
+const App = ({ children }) => {
   const { user } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(user);
     if (user) {
       setLoading(false);
     } else if (!user & (user != null)) {
-      console.log('No user, no dashboard');
-      router.push('/');
+      console.log('No user, no access to private route');
+      console.log('Rerouted');
+      // router.push('/signup');
     }
   }, [user]);
 
@@ -26,8 +27,15 @@ const PrivateRouteWrapper = (Component) => (props) => {
       </div>
     );
   } else {
-    return <Component {...props} />;
+    return (
+      <div className="w-screen min-h-screen bg-white flex">
+        <div className="w-64 border-r-2 border-gray-200 px-6 py-8">
+          <SideNav />
+        </div>
+        <div className="px-8 py-4 flex-grow">{children}</div>
+      </div>
+    );
   }
 };
 
-export default PrivateRouteWrapper;
+export default App;
