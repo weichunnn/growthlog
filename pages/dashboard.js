@@ -1,5 +1,7 @@
 import App from '@/components/App';
 import Card from '@/components/Card';
+import PageTitle from '@/components/PageTitle';
+
 import getGreetings from '@/utils/getGreetings';
 
 export const Layout = ({ children }) => {
@@ -10,8 +12,7 @@ export default function Dashboard() {
   return (
     <App>
       <div className="h-full w-full">
-        <h1 className="text-2xl font-semibold">{getGreetings()}</h1>
-        <p className="text-md my-2">How are you today?</p>
+        <PageTitle title={getGreetings()} subtitle="How are you today?" />
         <div className="mt-4 flex space-x-8">
           <Layout>
             <Card className="h-60">
