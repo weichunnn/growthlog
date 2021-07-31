@@ -21,22 +21,26 @@ export const NavButton = ({ linkTo, title, primary, ...props }) => {
 };
 
 export default function Header() {
-  const { signInWithGoogle } = useAuth();
+  const { user, signOut, signInWithGoogle } = useAuth();
 
   return (
     <nav className="flex items-center justify-between w-full px-16 h-20 bg-white sticky top-0">
       <Logo />
       <div className="flex items-center space-x-4">
-        <NavButton linkTo="#" title="About" />
+        <NavButton linkTo="/dashboard" title="About" />
         <NavButton linkTo="#" title="Blog" />
         <NavButton linkTo="#" title="Why GrowthLog" />
       </div>
-      <NavButton
-        linkTo="#"
-        title="Sign In"
-        primary
-        onClick={signInWithGoogle}
-      />
+      {user ? (
+        <NavButton linkTo="#" title="Sign Out" primary onClick={signOut} />
+      ) : (
+        <NavButton
+          linkTo="#"
+          title="Sign In"
+          primary
+          onClick={signInWithGoogle}
+        />
+      )}
     </nav>
   );
 }
