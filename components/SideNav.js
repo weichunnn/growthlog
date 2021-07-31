@@ -55,7 +55,10 @@ export default function SideNav() {
         <nav className="space-y-10">
           <div className="space-y-4">
             <h1 className="text-xs px-4 uppercase">Analytics</h1>
-            <SideNavButton title="Dashboard" linkTo="/dashboard" />
+            <SideNavButton
+              title="Dashboard"
+              onClick={() => router.push('/dashboard')}
+            />
           </div>
           <div className="space-y-4">
             <h1 className="text-xs px-4 uppercase">Content</h1>
