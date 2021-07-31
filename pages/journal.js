@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 
 import App from '@/components/App';
 import PageTitle from '@/components/PageTitle';
+import Button from '@/components/common/Button';
 
 export default function Journal() {
   return (
@@ -9,16 +10,21 @@ export default function Journal() {
       <div className="h-full w-full">
         <div className="flex justify-between items-center">
           <PageTitle title="Journal" subtitle={format(new Date(), 'PPP')} />
-          <button className="py-2 px-4 rounded-md transistion duration-200 ease-in-out text-white bg-blue-600 hover:bg-blue-700 active:ring-4 ring-blue-200">
-            Calander Picker
-          </button>
+          <Button
+            text="Calander Picker"
+            variant="solid"
+            onClick={() => console.log('Open Picker')}
+          />
         </div>
         <div className="mt-4 text-right">
-          <button className="mb-4 py-2 px-4 rounded-md transistion duration-200 ease-in-out border-2 border-blue-600 text-blue-600 hover:bg-blue-100 active:ring-4 ring-blue-200">
-            Save
-          </button>
+          <Button
+            text="Save"
+            variant="outline"
+            onClick={() => console.log('Saved')}
+            additionalClasses="w-48"
+          />
         </div>
-        <div className="h-60 w-4/5 mx-auto bg-green-200 mt-4">
+        <div className="mt-8 h-60 w-4/5 mx-auto bg-green-200">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, ratione.
         </div>
       </div>

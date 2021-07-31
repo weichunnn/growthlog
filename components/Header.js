@@ -1,46 +1,42 @@
-import NextLink from 'next/link';
-
 import { useAuth } from '@/lib/auth';
+import { useRouter } from 'next/router';
+
 import Logo from './Logo';
-
-export const NavButton = ({ linkTo, title, primary, ...props }) => {
-  const customization = primary
-    ? 'text-white bg-blue-600 hover:bg-blue-700'
-    : 'hover:text-blue-600 ';
-
-  return (
-    <NextLink href={linkTo}>
-      <a
-        className={`py-2 px-8 rounded-lg font-medium ${customization}`}
-        {...props}
-      >
-        {title}
-      </a>
-    </NextLink>
-  );
-};
+import Button from './common/Button';
 
 export default function Header() {
   const { user, signOut, signInWithGoogle } = useAuth();
+  const router = useRouter();
 
   return (
     <nav className="flex items-center justify-between w-full px-16 h-20 bg-white sticky top-0">
       <Logo />
       <div className="flex items-center space-x-4">
-        <NavButton linkTo="/dashboard" title="About" />
-        <NavButton linkTo="#" title="Blog" />
-        <NavButton linkTo="#" title="Why GrowthLog" />
-      </div>
-      {user ? (
-        <NavButton linkTo="#" title="Sign Out" primary onClick={signOut} />
-      ) : (
-        <NavButton
-          linkTo="#"
-          title="Sign In"
-          primary
-          onClick={signInWithGoogle}
+        <Button
+          text="About"
+          variant="highlight"
+          onClick={() => router.push('/dashboard')}
+          additionalClasses="!px-8"
         />
-      )}
+        <Button
+          text="Blog"
+          variant="highlight"
+          onClick={() => router.push('/blog')}
+          additionalClasses="!px-8"
+        />
+        <Button
+          text="Why GrowthLog"
+          variant="highlight"
+          onClick={() => console.log('Scrolled down')}
+          additionalClasses="!px-8"
+        />
+      </div>
+      <Button
+        text={user ? 'Sign Out' : 'Sign In'}
+        variant="solid"
+        onClick={user ? signOut : signInWithGoogle}
+        additionalClasses="!px-8"
+      />
     </nav>
   );
 }

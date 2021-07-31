@@ -7,12 +7,16 @@ import {
   FaSignOutAlt
 } from 'react-icons/fa';
 import router, { useRouter } from 'next/router';
-import { useAuth } from '@/lib/auth';
 
+import { useAuth } from '@/lib/auth';
 import Logo from './Logo';
 
 export const SideNavButton = ({ title, onClick }) => {
   const router = useRouter();
+  const isCurrentPage =
+    router.route.slice(1) == title.toLowerCase()
+      ? 'text-white bg-blue-600 hover:bg-blue-700'
+      : 'hover:bg-gray-200';
 
   const iconSwitch = () => {
     switch (title) {
@@ -30,13 +34,10 @@ export const SideNavButton = ({ title, onClick }) => {
         return <FaSignOutAlt className="mr-4 text-xl" />;
     }
   };
+
   return (
     <button
-      className={`flex items-center w-full py-2 px-4 rounded-md transistion duration-200 ease-in-out  ${
-        router.route.slice(1) == title.toLowerCase()
-          ? 'text-white bg-blue-600 hover:bg-blue-700'
-          : 'hover:bg-gray-200'
-      }`}
+      className={`flex items-center w-full py-2 px-4 rounded-md transistion duration-200 ease-in-out active:ring-4 ring-blue-200 ${isCurrentPage}`}
       onClick={onClick}
     >
       {iconSwitch()}
