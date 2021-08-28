@@ -9,6 +9,37 @@
     scroll-behavior: smooth;
   }
 
+  /* prevent prose causing editor js to collapse in width */
+  .prose {
+    max-width: none !important;
+  }
+
+  .prose .ce-header {
+    margin-bottom: -0.9em !important;
+    line-height: 1.5em !important;
+  }
+
+  /* adding addtional tags for prose to take into consideration */
+  .prose h5 {
+    font-size: 0.83em !important;
+    font-weight: 600 !important;
+  }
+
+  .prose h6 {
+    font-size: 0.67em !important;
+    font-weight: 600 !important;
+  }
+
+  /* custom styling for code*/
+  .prose code {
+    @apply text-red-800 bg-red-200 px-1 py-0.5 rounded-md !important;
+  }
+
+  .prose code::after,
+  code::before {
+    content: none !important;
+  }
+
   .min-content-height {
     min-height: calc(100vh - 5rem);
   }
